@@ -129,7 +129,8 @@ PROJECT_NAME/
 ├── metadata/  
 │ ├── Mapping_File.txt (to be made and uploaded) 
 │ ├── Abbreviated_Mapping_File.txt (columns 1 and 3 of Mapping_File.txt)  
-│ └── Parameters_mouse.txt (or human paramaters file)  
+│ ├── Parameters_mouse.txt (or human paramaters file)  
+│ └── Alithea_Parameters_File.txt  
 ├── scripts/  
 │ ├── BRB_Seq_Muegge_241112_TwoStage_noMulti.sh  
 │ ├── BRB_MultiQC_FullRun_240116.sh    
@@ -208,7 +209,28 @@ sbatch BRB_MultiQC_FullRun_240116.sh PROJECT_DIR LIBRARY_NAME
 sbatch scripts/BRB_MultiQC_FullRun_240116.sh full_run_analysis/ Test  
 
 ## Step 4: Full Run Processing Pipeline: Multiplex_BRB_Align_Counts_240125.sh
+We will now use Multiplex_BRB_Align_Counts_240125.sh
+### What this Script Does
+This script runs the BRB-seq alignment and counting pipeline. More specifically, Multiplex_BRB_Align_Counts.sh processes multiplexed BRB-seq FASTQ files, aligns reads using STARsolo, and generates a gene-by-sample count matrix for downstream RNA-seq analysis.  
 
+### Input for Multiplex_BRB_Align_Counts_240125.sh  
+```
+1. Sample <> Barcode mapping file  
+        a. This is the Abbreviated_Mapping_File.txt file you generated (columns 1                 and 3 of Mapping_File.txt)
+        b. cut -f1,3 Mapping_File.txt > Abbreviated_Mapping_File.txt
+2. Parameters file with length of CB and UMI 
+        a. This is the Alithea_Parameters_File.txt
+3. Organism type: Human or Mouse
+4. Path to reads 1 and 2
+```
+### Usage of Multiplex_BRB_Align_Counts_240125.sh
+**Usage Template**  
+sbatch  Multiplex_BRB_Align_Counts.sh PROJECT_DIRECTORY PROJECT_STEM MAPPING_FILE PARAMETERS SPECIES READ1_FASTQ READ2_FASTQ  
+  
+**Usage Examples**  
+sbatch scripts/Multiplex_BRB_Align_Counts.sh FullRun_Analysis/ BDM01_Stem metadata/FullRun_Mapping.txt Alithea_Parameters.txt mouse <path to read 1> <path to read 2>  
+
+sbatch scripts/Multiplex_BRB_Align_Counts_240125.sh Full_Run_Library_4/ GF_ASF_Lib4 metadata/Library4_Align.txt metadata/Alithea_Parameters_File.txt mouse /scratch/bmlab/kitchenr/JL004/data/SR010134_Lib4/combined_R1.fastq.gz /scratch/bmlab/kitchenr/JL004/data/SR010134_Lib4/combined_R2.fastq.gz  
 # Useful Commands on HTCF
 
 ## Checking Job Status
