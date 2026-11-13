@@ -44,7 +44,8 @@ g. In the metadata folder you should have your mapping file and the parameters f
 ```
 
 ## Step 2: Spike-In Processing Pipeline: BRB_Seq_Muegge_241112_TwoStage_noMulti.sh  
-In your Scripts folder you should have: BRB_MultiQC_SpikeIn_240116.sh and BRB_Seq_Muegge_241112_TwoStage_noMulti.sh.  
+In your Scripts folder you should have: BRB_MultiQC_SpikeIn_240116.sh and BRB_Seq_Muegge_261113_TwoStage_noMulti.sh.  
+This is now updated from BRB_Seq_Muegge_241112_TwoStage_noMulti.sh.
 
 We will use BRB_Seq_Muegge_241112_TwoStage_noMulti.sh first.   
 Run Type: Spike-in   Output: QC report  
@@ -71,12 +72,12 @@ For each sample in the mapping file this script:
 ```
 ### Usage of BRB_Seq_Muegge_241112_TwoStage_noMulti.sh
 **Usage Template**  
-sbatch BRB_Seq_Muegge_241112_TwoStage_noMulti.sh PROJECT_DIRECTORY MAPPING_FILE PARAMETERS_FILE  
+sbatch BRB_Seq_Muegge_261113_TwoStage_noMulti.sh PROJECT_DIRECTORY MAPPING_FILE PARAMETERS_FILE  
   
 **Usage Examples**   
-sbatch --array=1-8%8 scripts/BRB_Seq_Muegge_241112_TwoStage_noMulti.sh spike_in_analysis/ metadata/spikein_map.txt metadata/parameters.csv  
+sbatch --array=1-8%8 scripts/BRB_Seq_Muegge_261113_TwoStage_noMulti.sh spike_in_analysis/ metadata/spikein_map.txt metadata/parameters.csv  
   
-sbatch --array=1-48%20 scripts/SpikeIn/BRB_Seq_Muegge_241112_TwoStage_noMulti.sh spike_in_analysis_test/ metadata/Test.txt metadata/parameters_mouse.txt  
+sbatch --array=1-48%20 scripts/SpikeIn/BRB_Seq_Muegge_261113_TwoStage_noMulti.sh spike_in_analysis_test/ metadata/Test.txt metadata/parameters_mouse.txt  
   
 **Notes**  
 1. Change arrary 1-8 to number of your samples.   
